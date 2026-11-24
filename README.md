@@ -29,7 +29,7 @@ uv pip install \
 .venv/bin/oellm-eval --help
 ```
 7. ! Since current installation package was done before my update to clusters.yaml was proposed, you need to manually update the following: 
-`/gpfs/scratch/ehpc533/users/$user/oellm-eval-offline/.venv/lib/python3.12/site-packages/oellm/resources/clusters.yaml` with
+`/gpfs/scratch/ehpc533/users/$user/oellm-eval-offline/.venv/lib/python3.12/site-packages/oellm/resources/clusters.yaml` with either `clusters.yaml` from this repo, or manually:
 ```
 marenostrum5:
   hostname_pattern:
@@ -44,7 +44,7 @@ marenostrum5:
   EVAL_CONTAINER_IMAGE: "MN5_v2.sif"
   SINGULARITY_ARGS: "--nv"
 ```
-and also `/gpfs/scratch/ehpc533/users/$user/oellm-eval-offline/.venv/lib/python3.12/site-packages/oellm/resources/template.sbatch`
+and also `/gpfs/scratch/ehpc533/users/$user/oellm-eval-offline/.venv/lib/python3.12/site-packages/oellm/resources/template.sbatch` either with `template.sbatch` from this repo or manually:
 
 Update start of template with:
 ```
@@ -87,7 +87,7 @@ export HF_HUB_ENABLE_HF_TRANSFER=0
 
 and lastly `/gpfs/scratch/ehpc533/users/$user/oellm-eval-offline/.venv/lib/python3.12/site-packages/oellm/main.py`
 
-Copy it from my path `/gpfs/scratch/ehpc533/users/utu665365/oellm-eval-offline/.venv/lib/python3.12/site-packages/oellm/main.py`
+Copy it from here or if you want to do changes manually:
 
 Or update manually block around line 409, under comment `# Calculate dynamic array size and time limits` with:
 ```
