@@ -1,0 +1,89 @@
+shared:
+  TIME_LIMIT: "00:30:00"  # time limit in the format HH:MM:SS
+  UV_LINK_MODE: "copy"
+  EVAL_OUTPUT_DIR: "{EVAL_BASE_DIR}/{USER}"  # where evaluations are written
+  GPUS_PER_NODE: 1
+  HF_HUB_DISABLE_PROGRESS_BARS: "1"
+  HF_DATASETS_DISABLE_PROGRESS_BARS: "1"
+
+leonardo:
+  hostname_pattern: "*.leonardo.local"  # use this regexp to automatically assign environment variables corresponding to this YAML
+  EVAL_BASE_DIR: "/leonardo_work/AIFAC_L01_028/oellm-cli-shared-evals"
+  PARTITION: "boost_usr_prod"  # default partition to use
+  ACCOUNT: "OELLM_prod2026"  # default account to use
+  QUEUE_LIMIT: 1000  # maximum number of jobs that can be submitted as job/array, used to send only jobs that respects QOS
+  EVAL_CONTAINER_IMAGE: "eval_env-leonardo.sif"  # name of the container image that is pulled which is built automatically with Github actions
+  SINGULARITY_ARGS: "--nv"
+
+jureca:
+  hostname_pattern: "*.jureca"
+  EVAL_BASE_DIR: "/p/data1/mmlaion/oellm_shared_evals"
+  PARTITION: "dc-gpu"
+  ACCOUNT: "synthlaion"
+  QUEUE_LIMIT: 250
+  EVAL_CONTAINER_IMAGE: "eval_env-jureca.sif"
+  SINGULARITY_ARGS: "--nv"
+
+jupiter:
+  hostname_pattern: "jp*"
+  EVAL_BASE_DIR: "/e/data1/datasets/playground/mmlaion/shared/oellm_shared_evals"
+  HF_HOME: "/e/data1/datasets/playground/mmlaion/shared/oellm_shared_evals"
+  PARTITION: "booster"
+  ACCOUNT: "reformo"
+  QUEUE_LIMIT: 250
+  EVAL_CONTAINER_IMAGE: "eval_env-jupiter.sif"
+  SINGULARITY_ARGS: "--nv --contain --env PYTHONNOUSERSITE=1 --env SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt"
+
+lumi:
+  hostname_pattern:
+    - "uan*"
+    - "nid[0-9][0-9][0-9][0-9][0-9][0-9]"
+  EVAL_BASE_DIR: "/scratch/project_465002530/oellm-cli-shared-evals"
+  PARTITION: "small-g"
+  ACCOUNT: "project_465002530"
+  QUEUE_LIMIT: 210
+  EVAL_CONTAINER_IMAGE: "eval_env-lumi.sif"
+  SINGULARITY_ARGS: "--rocm"
+
+snellius:
+  hostname_pattern: "*.snellius.surf.nl"
+  EVAL_BASE_DIR: "/projects/0/prjs1874/oellm_shared_evals"
+  PARTITION: "gpu_h100"
+  ACCOUNT: "thomaso"
+  QUEUE_LIMIT: 30
+  EVAL_CONTAINER_IMAGE: "eval_env-snellius.sif"
+  SINGULARITY_ARGS: "--nv --contain"
+
+ufal:
+  hostname_pattern: "*.mff.cuni.cz"
+  EVAL_BASE_DIR: "/lnet/troja/projects/oellm-shared-evals"
+  PARTITION: "gpu-ms,gpu-troja"
+  QUEUE_LIMIT: 10
+  HF_HUB_OFFLINE: "0"
+  SLURM_MEM: "32G"
+  NODES: "1"
+  NODELIST: "dll-8gpu[1-2],dll-3gpu[1-5],dll-4gpu[3-4],tdll-8gpu[1-2],tdll-3gpu[1-4],tdll-4gpu1"
+
+ci: # lambda labs
+  hostname_pattern:
+    - "ip-*"
+    - "[0-9]*-[0-9]*-[0-9]*-[0-9]*"
+  EVAL_BASE_DIR: "/tmp/oellm-test"
+  PARTITION: "gpu"
+  ACCOUNT: "test"
+  QUEUE_LIMIT: 10
+  EVAL_CONTAINER_IMAGE: "eval_env-slurm-ci.sif"
+  SINGULARITY_ARGS: "--nv"
+
+marenostrum5:
+  hostname_pattern:
+    - "*alogin[0-9]*"
+    - "*glogin[0-9]*"
+    - "nid[0-9][0-9][0-9][0-9][0-9][0-9]"
+  EVAL_BASE_DIR: "/gpfs/projects/ehpc533/oellm_shared_evals"
+  PARTITION: "acc"
+  QOS: "acc_ehpc"
+  ACCOUNT: "ehpc533"
+  QUEUE_LIMIT: 100 #debug: 100
+  EVAL_CONTAINER_IMAGE: "MN5_v2.sif"
+  SINGULARITY_ARGS: "--nv"
