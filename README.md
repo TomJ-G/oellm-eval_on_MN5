@@ -5,7 +5,7 @@ Run command to enable uv:
 `module purge && module load oneapi hdf5 python`
 
 2. Copy `/gpfs/scratch/ehpc533/users/utu665365/oellm-eval-offline.tar.gz` or `/gpfs/scratch/ehpc533/users/utu665365/moe_build_offline.tar.gz` to your dir. oellm-eval-offline was build based on current main branch, and moe_build was based on Korbinian fork.
-3.  Unpack `tar -czf oellm-eval-offline.tar.gz oellm-eval`  and `cd /path/to/oellm-eval-offline`
+3.  Unpack `tar -xzvf oellm-eval-offline.tar.gz -C oellm-eval-offline`  and `cd /path/to/oellm-eval-offline`
 4. Create venv `uv venv --python python3.12 .venv`
 5. Install dependencies
 
